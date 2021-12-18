@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        var a = 123;
+
+        //16 进制的数字以0X开头
+        //8 进制的数字以0开头
+        //2进制的数字以0b开头
+        a = 0X10;
+
+        a = 180;
+
+        a = 0b10;
+        console.log(a);
+
+        /**
+         * 有些浏览器会把这种0开头的字符串按8进制转换，有些浏览器会按10进制转换
+         * 可以使用parseInt(value,10)使其按照10进制转换
+         * @type {string}
+         */
+        a = "070";
+        console.log(parseInt(a));
+
+        console.log(parseInt(a, 10));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

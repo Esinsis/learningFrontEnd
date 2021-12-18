@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        /**
+         * 如果字符串中有非数字的内容则被转为NaN
+         */
+        var a = "123";
+        a = Number(a);
+
+        console.log(typeof a);
+        console.log(a);
+
+        let b = "1a1";
+        console.log(Number(b));
+        console.log(typeof Number(b));
+
+        /**
+         * True 转为 1
+         * False 转为0
+         */
+        console.log(Number(true));
+        console.log(Number(false));
+
+        /**
+         * Null 转为 0
+         * undefined 转为 NaN
+         */
+        console.log(Number(null));
+        console.log(Number(undefined));
+
+        /**
+         * 转换方式二：只针对字符串
+         * parseInt 可以将字符串中的数字内容取出来
+         */
+
+        let aa = "12px";
+        console.log(parseInt(aa));
+        console.log(typeof parseInt(aa));
+
+        let bb = "22px33";
+        console.log(parseInt(bb));
+
+        let ccc = "123.123px";
+        let newVal = parseFloat(ccc);
+        console.log(newVal);
+        console.log(typeof newVal);
+
+        /**
+         * 如果对非String使用parseInt() 或 parseFloat() 则先把其转为String， 然后再对其操作
+         */
+        let v_false = false;
+        let newVal_False = parseInt(v_false);
+        console.log(newVal_False);
+        console.log(typeof newVal_False);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

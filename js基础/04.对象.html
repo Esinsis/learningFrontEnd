@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+
+        // 声明对象
+        var person = new Object();
+        var person2 = {};
+        // 给对象添加属性
+        // 中括号添加属性 可以传递变量
+        person.name = "Tyler";
+        person["age"] = 22;
+        var gender = "male";
+        person[gender] = true;
+        console.log(person.male);
+        // 修改对象属性值
+        person.name = "Joseph";
+        // 删除对象属性
+        delete person.name;
+        console.log(person.name);
+        console.log(person.age);
+        console.log(person["age"]);
+
+        // 检查一个对象中是否含有某个属性
+        console.log("name" in person);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script type="text/javascript">
+    /**
+     * 封装到函数中的代码不会立马执行，只有再调用函数的时候才会被执行
+     * @type {Function}
+     */
+    var fun = new Function("console.log('this is a function')");
+    fun();
+
+    function fun2(){
+        console.log("this is the second function");
+    }
+
+    fun2();
+
+    var fun3 = function (){
+        console.log("this is the third function");
+    }
+    fun3();
+
+</script>
+</body>
+</html>

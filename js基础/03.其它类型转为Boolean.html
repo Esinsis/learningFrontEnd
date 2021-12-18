@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        /**
+         * 1. Number类型中只有0和NaN转为false，其它都转为true
+         * 2. String类型中只有null和undefined转为false，其它都转为true
+         * 3. 对象都转为true
+         */
+        let a = 123;
+        console.log(Boolean(a));
+        console.log(typeof Boolean(a));
+        a = 0;
+        console.log(Boolean(a));
+        console.log(typeof Boolean(a));
+        a = NaN;
+        console.log(Boolean(a));
+        console.log(typeof Boolean(a));
+        a = "123";
+        console.log(Boolean(a));
+        console.log(typeof Boolean(a));
+        a = null;
+        console.log(Boolean(a));
+        console.log(typeof Boolean(a));
+        a = undefined;
+        console.log(Boolean(a));
+        console.log(typeof Boolean(a));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

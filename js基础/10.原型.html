@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prototype</title>
+    <script type="text/javascript">
+
+        /**
+         * 原型也是一种对象， 每一个函数都有一个原型对象与之相关联
+         *  此原型对象可以被所有由改构造函数创建的对象所访问,使用对象的__proto__
+         *
+         *  原型对象也有自己的原型(原型链的构成)，直到最终Object的prototype。
+         *  Object的prototype没有prototype，及Object的prototype的原型为null
+         */
+
+        function Person(name, age, gender){
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+        }
+
+        Person.prototype.sayName = function (){
+            console.log(this.name);
+        }
+
+        var per = new Person("Tyler",23,"male");
+        console.log(Person.prototype === per.__proto__);
+
+        // the prototype of Object doesn't have any prototype
+        console.log(per.__proto__.__proto__.__proto__); // null
+
+        /**
+         * 对象的toString() 方法默认输出[Object, Object]
+         *  可以使用prototype 重写Object的toString()方法
+         */
+        console.log(per);
+
+        // 重写Object的toString() 方法
+        Person.prototype.toString = function (){
+            return "[" + this.name + "," + this.age + "," + this.gender +"]";
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
