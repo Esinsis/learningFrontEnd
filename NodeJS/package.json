@@ -1,0 +1,11 @@
+{
+  "name": "01.module",
+  "version": "1.0.0",
+  "description": "test 01",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
