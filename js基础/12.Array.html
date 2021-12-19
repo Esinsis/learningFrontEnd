@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        /**
+         * JavaScript中的数组
+         */
+
+        var arr = new Array();
+        arr.push(1, 2, 3, 4);
+        console.log(arr);
+
+        arr = [2, 3, 4];
+        console.log(arr);
+
+        /**
+         * 数组中常用的方法
+         */
+        /*
+           1. concat() 连接两个或多个数组，并返回已连接数组的副本,不会修改原数组，而是返回一个新的数组
+         */
+        var arr1 = [1, 2, 3];
+        var arr2 = [4, 5, 6];
+        let arr3 = arr1.concat(arr2);
+        console.log(arr3); // [1,2,3,4,5,6]
+
+        /*
+           2. filter() 使用数组中通过测试的每个元素创建新数组。
+         */
+        arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        var result = arr.filter(v => v % 2 === 0);
+        console.log(result); // [2,4,6,8]
+
+        /**
+         * 3. find() 返回数组中第一个通过测试的元素的值
+         */
+        arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        var findedResult = arr.find(v => v === 9);
+        console.log(findedResult);
+
+        /**
+         * 4. findIndex() 返回数组中通过测试的第一个元素的索引。
+         */
+        arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        var findedIndex = arr.findIndex(v => v === 9);
+        console.log(findedIndex); // 8
+
+        /**
+         * forEach() 为每个数组元素调用函数。
+         */
+        arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        arr.forEach(v => console.log(v));
+
+        /**
+         * slice()选择数组的一部分，并返回新数组。
+         */
+        arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        let sliceResult = arr.slice(2, 3);
+        console.log(sliceResult); // [3]
+        var sliceResult2 = arr.slice(2, -3);
+        console.log(sliceResult2); // [3,4,5,6]
+        console.log(arr.slice(0, -1));
+
+        /**
+         * splice() 从数组中添加/删除元素。
+         */
+        arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        let spliceResult = arr.splice(2, 2);
+        console.log(spliceResult); // [3,4]
+        // 删除某个元素
+        arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        arr.splice(2, 1);
+        console.log(arr);
+        // 替换元素
+        arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        arr.splice(2, 1, "a", "a", "a");
+        console.log(arr); //[1, 2, 'a', 'a', 3, 4, 5, 6, 7, 8, 9]
+
+        arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        arr.splice(2, 3, "a", "a", "a");
+        console.log(arr); //[1, 2, 'a', 'a', 'a', 6, 7, 8, 9]
+    </script>
+</head>
+<body>
+
+</body>
+</html>
