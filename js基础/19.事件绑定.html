@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件绑定</title>
+    <script>
+        /**
+         * 元素.事件 方式绑定事件只能绑定一次
+         */
+        window.onload = function (){
+            var btn = document.getElementById("btn");
+            btn.addEventListener("click", function (){
+                alert(1);
+            });
+
+            btn.addEventListener("click", function (){
+                alert(2);
+            })
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="click" id="btn"/>
+<input type="button" value="click2" id="btn2"/>
+</body>
+</html>

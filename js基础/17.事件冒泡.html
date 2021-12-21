@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件冒泡</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            background-color: yellowgreen;
+        }
+
+        #box span{
+            background-color: yellow;
+        }
+    </style>
+
+    <script>
+        window.onload = function (){
+            const box = document.getElementById("box");
+            const sp = document.getElementById("sp");
+
+            box.onclick = function (event){
+                alert("我是div中的click");
+                event.cancelBubble = true;
+            }
+
+            sp.onclick = function (event){
+                alert("我是span中的click");
+                // 禁止事件冒泡
+                event.cancelBubble = true;
+            }
+
+            document.body.onclick = function (){
+                alert("我是body中的click");
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div id="box">
+        我是box
+        <span id="sp">
+            我是span
+        </span>
+    </div>
+</body>
+</html>

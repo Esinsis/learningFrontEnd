@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #container{
+            height: 100px;
+            width: 100px;
+            background-color: red;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function (){
+            const container = document.getElementById("container");
+            const btnDom = document.getElementById("btn");
+            const readValDom = document.getElementById("btn1");
+            btnDom.onclick = function (){
+                container.style.height = "200px";
+                container.style.width = "200px";
+                container.style.backgroundColor = "yellow";
+            }
+
+            readValDom.onclick = function (){
+                // dom.style[样式] 只能读取内联样式
+                // alert(container.style.width);
+                // console.log(container.style.width);
+
+                let style = getComputedStyle(container, null);
+                console.log(style.width);
+                console.log(style.backgroundColor);
+            }
+
+            /**
+             * clientWidth & clientHeight:
+             *  包括内容和内边距，不包括边框.
+             *  不带px，返回的是数字，可以进行计算
+             *  只读属性，不能修改
+             *
+             * offsetWidth & offsetHeight:
+             *  获取元素的整个的宽度和高度，包括内容区、内边距和边框
+             *  只读属性，不能修改
+             *
+             * offsetParent:
+             *  - 用来获取当前元素的定位父元素
+             *  - 会获取到离当前元素最近的开启了定位的祖先元素
+             *      如果所有的祖先元素都没有开启定位，则返回body
+             *  - 只读属性，不能修改
+             *
+             * offsetLeft & offsetTop:
+             *  - 当前元素相对于其定位父元素的水平和垂直偏移量
+             *
+             * scrollWidth & scrollHeight:
+             *  - 当前元素整个滚动区域的宽度和高度
+             *
+             * scrollLeft & scrollTop:
+             *  - 水平滚动条滚动的距离
+             *  - 垂直滚动条滚动的距离
+             *
+             * scrollHeight - scrollTop == clientHeight
+             *  说明垂直滚动条到底了
+             *
+             * scrollWidth - scrollLeft == clientWidth
+             *  说明水平滚动条到底
+             */
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="ClickMe" id="btn"/>
+    <input type="button" value="readVal" id="btn1"/>
+    <div id="container">
+
+    </div>
+
+</body>
+</html>
