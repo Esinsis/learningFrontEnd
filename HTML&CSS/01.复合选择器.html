@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .green, span {
+            color: green;
+        }
+
+        div.box {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+        }
+
+        .a.b.c {
+            border: 5px solid red;
+        }
+
+        /*div 有且仅有下一级 */
+        div.box1 > span {
+            color: red;
+        }
+
+        /*div 下的所有的span*/
+        div span {
+            color: aqua;
+        }
+
+        /*div兄弟选择器span，div必须和span紧挨着*/
+        div + span {
+
+        }
+
+        /*div所有的兄弟选择器span*/
+        div ~ span {
+
+        }
+
+        /*所有包括name属性的input框*/
+        input[name] {
+
+        }
+
+        /*所有包括name属性且name='abc'的input框*/
+        input[name='abc'] {
+
+        }
+
+        /*所有包括name属性且name以'abc'开头的input框*/
+        input[name^='abc'] {
+
+        }
+
+        /*所有包括name属性且name以'abc'结尾的input框*/
+        input[name$='abc'] {
+
+        }
+
+        /*所有包括name属性且name包括'abc'的input框*/
+        input[name*='abc'] {
+
+        }
+    </style>
+</head>
+<body>
+<span>我是一个span</span>
+
+<div class="green box a">
+    我是一个green的div
+</div>
+
+<div class="box a b c">
+
+</div>
+
+<div class="box1">
+    <p>
+        <span>我是div中p下的span</span>
+    </p>
+    <span>我是第一个div里的span</span>
+</div>
+
+</body>
+</html>

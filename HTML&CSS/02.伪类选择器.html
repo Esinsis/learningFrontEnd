@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*
+         ul下所有的子元素，不只局限于li，如果第一个子元素不是li，则不生效
+         */
+        ul.ul1 li:first-child {
+            color: red;
+        }
+
+        ul.ul1 li:last-child {
+            color: green;
+        }
+
+        ul.ul1 li:nth-child(3) {
+            color: yellowgreen;
+        }
+
+        /**
+            偶数
+         */
+        ul.ul1 li:nth-child(2n) {
+            color: yellowgreen;
+        }
+
+        /**
+            奇数
+         */
+        ul.ul1 li:nth-child(2n+1) {
+            color: yellowgreen;
+        }
+
+        /*
+            ul下所有的li子元素，其它类型的元素被忽略
+         */
+        ul.ul2 li:first-of-type {
+            color: goldenrod;
+        }
+
+        ul.ul2 li:last-of-type {
+            color: aqua;
+        }
+
+        ul.ul2 li:nth-of-type(3) {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+<ul class="ul1">
+    <li>第1个li</li>
+    <li>第2个li</li>
+    <li>第3个li</li>
+    <li>第4个li</li>
+    <li>第5个li</li>
+</ul>
+
+<ul class="ul2">
+    <li>第1个li</li>
+    <li>第2个li</li>
+    <li>第3个li</li>
+    <li>第4个li</li>
+    <li>第5个li</li>
+</ul>
+</body>
+</html>
