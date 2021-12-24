@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" name="" id="fib">
+<button id="calc">计算</button>
+<script !src="">
+    var calc = document.getElementById("calc");
+    calc.onclick = function (){
+        var number = document.getElementById("fib").value;
+        var worker = new Worker('./worker.js');
+        worker.postMessage(number);
+        console.log("主线程向子线程发送数据：" + number);
+
+        worker.onmessage = function (event){
+            var result = event.data;
+            console.log('主线程接收到子线程结果：' + result);
+            alert(result);
+        }
+    }
+</script>
+</body>
+</html>
