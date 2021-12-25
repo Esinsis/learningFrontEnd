@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script !src="">
+
+    // 模拟获取用户数据， 订单数据， 商品数据
+    function getUsers() {
+        setTimeout(() => {
+            let data = 'User Info';
+            iterator.next(data);
+        }, 1000);
+    }
+
+    function getOrders() {
+        setTimeout(() => {
+            let data = 'order info';
+            iterator.next(data);
+        }, 1000);
+    }
+
+    function getGoods() {
+        setTimeout(() => {
+            let data = 'goods info';
+            iterator.next(data);
+        }, 1000);
+    }
+
+    function* gen() {
+        let users = yield getUsers();
+        console.log(users);
+        let orders = yield getOrders();
+        console.log(orders);
+        let goods = yield getGoods();
+        console.log(goods);
+    }
+
+    var iterator = gen();
+    iterator.next();
+
+</script>
+</body>
+</html>

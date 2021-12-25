@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    const wangwang = {
+        name: '汪汪队',
+        teams: ['天天', '灰灰', '毛毛', '小丽', '阿奇'],
+        [Symbol.iterator]() {
+            let index = 0;
+            let _this = this;
+            return {
+                next: function () {
+                    if (index < _this.teams.length) {
+                        const result = {value: _this.teams[index], done: false}
+                        index++;
+                        return result;
+                    } else {
+                        return {value: undefined, done: true}
+                    }
+                }
+            }
+        }
+    }
+
+    for (let v of wangwang) {
+        console.log(v);
+    }
+</script>
+
+</body>
+</html>

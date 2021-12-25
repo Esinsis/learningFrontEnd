@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script !src="">
+
+    function * gen(){
+        console.log('1111');
+        // 分段返回结果
+        let one = yield '1111111';
+        console.log(one);
+        let two = yield '2222222';
+        console.log(two);
+        let three = yield '3333333';
+        console.log(three);
+    }
+
+    let iterator = gen();
+
+    // for (let v of iterator){
+    //     console.log(v);
+    // }
+    iterator.next();
+    iterator.next('bbb');
+    iterator.next('ccc');
+    iterator.next('ddd');
+</script>
+</body>
+</html>
