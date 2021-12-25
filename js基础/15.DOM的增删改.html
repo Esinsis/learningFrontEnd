@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        /**
+         * firstChild 包括所有类型的Dom元素
+         */
+        window.onload = function (){
+            const btn = document.getElementById("addDom");
+            btn.onclick = function (){
+                const li = document.createElement("li");
+
+                let szText = document.createTextNode("shenzhen");
+                // 向父节点中添加一个子节点
+                li.appendChild(szText);
+
+                const city = document.getElementById("city");
+                city.appendChild(li);
+            }
+
+            const btn2 = document.getElementById("btn2");
+            btn2.onclick = function (){
+                const li = document.createElement("li");
+                let szText = document.createTextNode("shenzhen");
+                li.appendChild(szText);
+                const city = document.getElementById("city");
+                let firstChild = city.firstElementChild;
+                city.insertBefore(li, firstChild);
+            }
+
+            const btn3 = document.getElementById("btn3");
+            btn3.onclick = function (){
+                let li = document.createElement("li");
+                let szText = document.createTextNode("深圳");
+                li.appendChild(szText);
+
+                const city = document.getElementById("city");
+                let gz = city.firstElementChild;
+                city.replaceChild(li, gz);
+            }
+
+            const btn4 = document.getElementById("btn4");
+            btn4.onclick = function (){
+                const city = document.getElementById("city");
+                let firstElementChild = city.firstElementChild;
+                city.removeChild(firstElementChild);
+            }
+
+            const btn5 = document.getElementById("btn5");
+            btn5.onclick = function (){
+                let city = document.getElementById("city");
+                city.innerHTML += "<li>武汉</li>";
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <ul id="city">
+            <li>广州</li>
+            <li>上海</li>
+            <li>北京</li>
+            <li>大连</li>
+        </ul>
+    </div>
+    <input type="button" value="添加一个节点" id="addDom"/>
+    <input type="button" value="在广州前插入" id="btn2" />
+    <input type="button" value="使用深圳替换广州" id="btn3" />
+    <input type="button" value="删除第一个节点" id="btn4" />
+    <input type="button" value="修改city内的html" id="btn5" />
+</body>
+</html>

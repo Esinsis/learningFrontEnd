@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件委派</title>
+    <script type="text/javascript">
+        /**
+         * 事件委派：
+         *  就是将多个元素的事件绑定到相同父元素上（利用事件冒泡机制）
+         */
+        window.onload = function () {
+            var uls = document.getElementById("uls");
+            uls.onclick = function (event) {
+                var target = event.target;
+                alert(target.innerHTML);
+            }
+
+            var btn = document.getElementById("btn");
+            btn.onclick = function (){
+                var li = document.createElement("li");
+                li.innerHTML = "<a href=\"javascript:;\">新连接</a>";
+                uls.appendChild(li);
+            }
+        }
+    </script>
+</head>
+<body>
+<button id="btn">添加一个连接</button>
+<ul id="uls">
+    <li><a href="javascript:;">连接一</a></li>
+    <li><a href="javascript:;">连接二</a></li>
+    <li><a href="javascript:;">连接三</a></li>
+</ul>
+
+</body>
+</html>

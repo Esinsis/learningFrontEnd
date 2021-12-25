@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script !src="">
+    function Person(name, age){
+        this.name = name;
+        this.age = age;
+    }
+
+    Person.prototype.setName = function (name) {
+        this.name = name;
+    }
+
+    function Student(name, age, address){
+        Person.call(this, name, age);
+        this.address = address;
+    }
+
+    Student.prototype = new Person();
+    Student.prototype.constructor = Student;
+    Student.prototype.setAddress = function (address){
+        this.address = address;
+    }
+
+    var student = new Student();
+    student.setName("Bob");
+    student.setAddress("SH");
+    console.log(student);
+</script>
+</body>
+</html>

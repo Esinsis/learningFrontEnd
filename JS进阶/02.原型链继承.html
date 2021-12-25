@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script !src="">
+    function Parent() {
+        this.superProp = "Super property";
+    }
+
+    Parent.prototype.showSuperProp = function () {
+        console.log(this.superProp);
+    }
+
+    function Child() {
+        this.subProp = "Sub property";
+    }
+    // 关键点，使子类的原型指向父类的对象，从而可以用子类的原型调用父类的原型和方法
+    Child.prototype = new Parent();
+    Child.prototype.constructor = Child;
+    Child.prototype.showSubProp = function () {
+        console.log(this.subProp);
+    }
+
+    var child = new Child();
+
+    child.showSubProp();
+    child.showSuperProp();
+</script>
+</body>
+</html>

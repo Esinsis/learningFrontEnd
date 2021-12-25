@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        /**
+         * call() 和 apply()方法都可以对一个function进行调用
+         *  - call 和 apply 都可以改变其所调用的function的this的指向（指向传入的第一个参数的对象）
+         */
+        function fun() {
+            console.log(this.name);
+        }
+
+        const person = {
+            name: "window"
+        };
+
+        fun(); // -->window
+
+        const monkeySun = {
+            name: "孙悟空"
+        }
+
+        const pig = {
+            name: "猪八戒"
+        }
+
+        fun.call(monkeySun);
+        fun.apply(pig);
+
+        function fun1(a, b) {
+            console.log(this.name + ", " + a + ", " + b);
+        }
+
+        /*
+            调用一个带参数的function的时候，用apply调用必须把所有的参数放入数组中
+         */
+        fun1.call(monkeySun, "1", "2");
+        fun1.apply(pig, ["a", "b"]);
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
