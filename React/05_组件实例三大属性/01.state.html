@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>state</title>
+</head>
+<body>
+<div id="box"></div>
+
+<script type="text/javascript" src="../libs/react.development.js"></script>
+<script type="text/javascript" src="../libs/react-dom.development.js"></script>
+<script type="text/javascript" src="../libs/babel.min.js"></script>
+
+<script type="text/babel">
+    // 1创建组件
+    class Weather extends React.Component {
+
+        constructor(props) {
+            super(props);
+            // 初始化状态
+            this.state = {isHot: true}
+            // 解决changeWeather中this的指向问题
+            this.changeWeather = this.changeWeather.bind(this);
+        }
+
+        render() {
+            const {isHot} = this.state;
+            return <h1 onClick={this.changeWeather}>今天天气很{isHot ? '炎热' : '凉爽'}</h1>
+        }
+
+        changeWeather(){
+            /**
+             * changeWeather 放在哪里？ -- Weather的原型对象上，供实例使用
+             *  由于changeWeather是作为onClick的回调，所以不是通过实例调用的，是直接调用
+             *  类中的方法默认开启了局部的严格模式，所以changeWeather中的this为undefined
+             */
+            console.log(this);
+
+            // 获取原来的isHot值
+            const isHot = this.state.isHot;
+            // 状态必须通过setState() 修改, 且要传入对象（合并）
+            this.setState({isHot: !isHot});
+        }
+    }
+
+    ReactDOM.render(<Weather/>, document.getElementById("box"));
+
+</script>
+</body>
+</html>
