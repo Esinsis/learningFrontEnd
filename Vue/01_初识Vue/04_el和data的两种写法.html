@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04_el和data的两种写法</title>
+    <script src="../00_js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+
+</div>
+
+<script type="text/javascript">
+    Vue.config.productionTip=false;
+
+    // el 的两种写法
+    const vm = new Vue({
+        // el: '#root', // 第一种写法
+        data: {
+            name: 'Tyler'
+        }
+    })
+
+    setTimeout(() => {
+        vm.$mount('#root'); // 第二种写法
+    }, 1000);
+
+    // data的两种写法
+    new Vue({
+        el: '#root',
+        // 第一种写法
+        // data: {
+        //     name: 'Tyler'
+        // }
+        // 第二种写法
+        // data: function (){
+        //     return {
+        //         name: 'Tyler'
+        //     }
+        // }
+        data(){
+            return {
+                name: 'Tyler'
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03_Vue中的数据代理</title>
+    <script src="../00_js/vue.js"></script>
+</head>
+<body>
+
+<div id="root">
+    <h2>公司名称：{{name}}</h2>
+    <h2>公司地址：{{address}}</h2>
+</div>
+<script type="text/javascript">
+    Vue.config.productionTip=false;
+
+    /**
+     * vm._data.name
+     * vm._data.address
+     */
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            name: 'Tencent',
+            address: '深圳'
+        }
+    });
+</script>
+</body>
+</html>
