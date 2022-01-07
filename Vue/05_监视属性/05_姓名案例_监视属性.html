@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05_姓名案例_监视属性</title>
+    <script src="../00_js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    姓：<input type="text" v-model="firstName"> <br/><br/>
+    名：<input type="text" v-model="lastName"> <br/><br/>
+    全名：<span>{{fullName}}</span>
+</div>
+<script type="text/javascript">
+
+    /**
+     * computed 和 watch 之间的区别:
+     *   1. computed能完成的功能，watch都可以完成
+     *   2. watch能完成的功能，computed不一定能完成(如: 异步任务)
+     * 两个重要的小原则:
+     *   1. 所有被Vue管理的函数，最好写成普通函数，这样this的指向才是vm或组件对象
+     *   2. 所有不被Vue管理的函数(定时器的回调函数、Ajax的回调函数等、Promise的回调函数)
+     *   最好写成箭头函数，这样this的指向才是vm或组件对象
+     */
+    Vue.config.productionTip = false;
+
+    new Vue({
+        el: '#root',
+        data: {
+            firstName: 'Tyler',
+            lastName: 'Zhao',
+            fullName: 'Tyler-Zhao'
+        },
+        watch: {
+            firstName(newVal, oldVal){
+                setTimeout(()=>{
+                    this.fullName = newVal + '-' + this.lastName;
+                }, 1000);
+            },
+            lastName(newVal, oldVal){
+                this.fullName = this.firstName + '-' + newVal;
+            }
+        }
+    });
+</script>
+</body>
+</html>

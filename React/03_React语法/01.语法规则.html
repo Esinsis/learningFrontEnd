@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box"></div>
+
+<script type="text/javascript" src="../libs/react.development.js"></script>
+<script type="text/javascript" src="../libs/react-dom.development.js"></script>
+<script type="text/javascript" src="../libs/babel.min.js"></script>
+<script type="text/babel">
+    /**
+     *  Jsx 语法规则：
+     *      1. 定义虚拟DOM，一定不能写引号
+     *      2. 标签中混入JS表达式时要使用{}
+     *      3. 样式的类名制定不要用class，而是className
+     *      4. 内联样式， 要用style={{key:value}}的形式去写
+     *      5. 只有一个跟标签
+     *      6. 标签必须闭合
+     *      7. 标签首字母
+     *          - 若小写字母开头，则将该标签转为html中同名元素
+     *          - 若大写字母开头，react就去渲染对应的组件，若没有定义，则报错
+     */
+    const myId = 'box';
+    const myData = 'Hello World';
+
+    const VDOM = (
+        <div>
+            <h1 id={myId.toLowerCase()} className="title">
+                <span style={{color: 'whight', fontSize: '29px'}}>
+                    {myData.toLowerCase()}
+                </span>
+            </h1>
+            <h1 id={myId.toLowerCase()+'2'} className="title">
+                <span style={{color: 'whight', fontSize: '29px'}}>
+                    {myData.toLowerCase()}
+                </span>
+            </h1>
+        </div>
+    );
+    ReactDOM.render(VDOM, document.getElementById("box"));
+</script>
+</body>
+</html>

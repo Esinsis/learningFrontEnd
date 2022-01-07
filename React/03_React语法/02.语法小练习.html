@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box"></div>
+
+<script type="text/javascript" src="../libs/react.development.js"></script>
+<script type="text/javascript" src="../libs/react-dom.development.js"></script>
+<script type="text/javascript" src="../libs/babel.min.js"></script>
+<script type="text/babel">
+
+    const data = ['Angular','React','VUE'];
+
+    const VDOM = (
+        <div>
+           <ul>
+               {
+                   data.map((item, index)=>{
+                       return <li key={index}>{item}</li>
+                   })
+               }
+           </ul>
+        </div>
+    );
+    ReactDOM.render(VDOM, document.getElementById("box"));
+</script>
+</body>
+</html>

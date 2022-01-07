@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>props</title>
+</head>
+<body>
+<div id="box"></div>
+
+<script type="text/javascript" src="../libs/react.development.js"></script>
+<script type="text/javascript" src="../libs/react-dom.development.js"></script>
+<script type="text/javascript" src="../libs/babel.min.js"></script>
+
+<script type="text/babel">
+    class Person extends React.Component {
+        render() {
+            const {name, gender, age} = this.props;
+            return (
+                <ul>
+                    <li>name: {name}</li>
+                    <li>gender: {gender}</li>
+                    <li>age: {age}</li>
+                </ul>
+            )
+        }
+    }
+
+    class a {
+        constructor(){
+
+        }
+
+        render(){
+            
+        }
+    }
+    const p = {name: 'Joseph', gender: 'M', age: 23}
+    // ReactDOM.render(<Person name="Michael" gender="M" age={23}/>, document.getElementById("box"));
+    ReactDOM.render(<Person {...p}/>, document.getElementById("box"));
+</script>
+</body>
+</html>

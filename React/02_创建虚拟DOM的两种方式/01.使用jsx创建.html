@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box"></div>
+
+<script type="text/javascript" src="../libs/react.development.js"></script>
+<script type="text/javascript" src="../libs/react-dom.development.js"></script>
+<script type="text/javascript" src="../libs/babel.min.js"></script>
+<script type="text/babel">
+    const VDOM = (
+        <h1 id="title">
+            <span>Hello, React</span>
+        </h1>
+    );
+    ReactDOM.render(VDOM, document.getElementById("box"));
+</script>
+</body>
+</html>

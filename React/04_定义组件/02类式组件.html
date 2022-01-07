@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="box"></div>
+
+<script type="text/javascript" src="../libs/react.development.js"></script>
+<script type="text/javascript" src="../libs/react-dom.development.js"></script>
+<script type="text/javascript" src="../libs/babel.min.js"></script>
+
+<script type="text/babel">
+
+    class MyComponent extends React.Component{
+        render(){
+            return <h1>this is a class component</h1>
+        }
+    }
+
+    /**
+     * 执行了ReactDOM.render(<MyComponent/> 之后发生了什么？
+     *  1. React解析组件标签，找到了MyComponent组件
+     *  2. 发现组件是由类定义的，随后new 出来该类的实例，并通过该实例调用到原型上的render方法。
+     *  3. 将render返回的虚拟DOM转为真实的DOM，随后呈现到页面中
+     */
+    ReactDOM.render(<MyComponent/>, document.getElementById("box"));
+</script>
+</body>
+</html>

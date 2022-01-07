@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01_Object.defineProperty</title>
+</head>
+<body>
+<script type="text/javascript">
+    let number = 19;
+    let person = {
+        name: '张三',
+        gender: 'M'
+    }
+
+    Object.defineProperty(person, 'age', {
+        // value: 19,
+        // enumerable: true, // 是否可被枚举， 默认值false
+        // writable: true, // 是否可以被修改， 默认值false
+        // configurable: true // 是否可以被删除， 默认值false
+
+        /**
+         * 当有人读取person的age属性时，get函数(getter)就会被调用，且返回值就是age
+         * @returns {number}
+         */
+        get(){
+            return number;
+        },
+
+        /**
+         * 当有人修改person的age属性时，set函数(setter)就会被调用
+         * @param val
+         */
+        set(val){
+            number = val;
+        }
+    })
+
+    delete person.age
+</script>
+</body>
+</html>
