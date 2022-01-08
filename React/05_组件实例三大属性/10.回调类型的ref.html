@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10.回调类型的ref</title>
+</head>
+<body>
+<div id="box"></div>
+
+<script type="text/javascript" src="../libs/react.development.js"></script>
+<script type="text/javascript" src="../libs/react-dom.development.js"></script>
+<script type="text/javascript" src="../libs/babel.min.js"></script>
+
+<script type="text/babel">
+    class Demo extends React.Component {
+
+        /**
+         * 如果 ref 回调函数是以内联函数的方式定义的，在更新过程中它会被执行两次，
+         * 第一次传入参数 null，然后第二次会传入参数 DOM 元素。这是因为在每次渲染
+         * 时会创建一个新的函数实例，所以 React 清空旧的 ref 并且设置新的。通过将
+         * ref 的回调函数定义成 class 的绑定函数的方式可以避免上述问题，
+         * 但是大多数情况下它是无关紧要的。
+         */
+        showData = () => {
+            alert(this.inp1.value);
+        }
+
+        showData2 = () => {
+            alert(this.input2.value);
+        }
+
+        // class 的绑定函数
+        saveNode = (e) => {
+            this.input2 = e;
+        }
+
+        render() {
+            return (
+                <div>
+                    {/*ref 指定的回调函数所接受的参数就是当前的节点*/}
+                    <input ref={e => this.inp1 = e} type="text" placeholder="点击按钮显示数据"/> &nbsp;&nbsp;
+                    <button onClick={this.showData}>点我显数据</button>
+                    &nbsp;&nbsp;
+                    <input ref={this.saveNode} onBlur={this.showData2} type="text" placeholder="失去焦点显示数据"/>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<Demo/>, document.getElementById("box"));
+</script>
+</body>
+</html>

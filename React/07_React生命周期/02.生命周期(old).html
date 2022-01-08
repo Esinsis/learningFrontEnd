@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02.生命周期(old)</title>
+</head>
+<body>
+<div id="box"></div>
+
+<script type="text/javascript" src="../libs/react.development.js"></script>
+<script type="text/javascript" src="../libs/react-dom.development.js"></script>
+<script type="text/javascript" src="../libs/babel.min.js"></script>
+
+<script type="text/babel">
+
+    class Sum extends React.Component {
+
+        state = {
+            count: 0
+        }
+
+        // 使用箭头函数，保证this的指向正确
+        add = () => {
+            // 快捷取值，必须要加大括号
+            const {count} = this.state;
+            this.setState({count: count + 1})
+        }
+
+        render() {
+            const {count} = this.state;
+            return (
+                <div>
+                    <h2>当前求和为: {count}</h2>
+                    <button onClick={this.add}>点我+1</button>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<Sum/>, document.getElementById("box"));
+
+</script>
+</body>
+</html>
