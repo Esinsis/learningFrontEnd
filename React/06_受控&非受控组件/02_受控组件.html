@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02_受控组件</title>
+    <script type="text/javascript" src="../libs/react.development.js"></script>
+    <script type="text/javascript" src="../libs/react-dom.development.js"></script>
+    <script type="text/javascript" src="../libs/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        class Login extends React.Component{
+
+            /**
+             * 受控组件：
+             *    输入类的form随着输入，可以把数据维护到state中。(Vue中的双向数据绑定)
+             * @param event
+             */
+            state = {
+                username: '',
+                password: ''
+            }
+
+            handleSubmit = (event) => {
+                event.preventDefault();
+                const {username, password} = this.state;
+                alert(`Username: ${username}, Password: ${password}`);
+            }
+
+            saveUsername = (event) => {
+                this.setState({username: event.target.value})
+            }
+
+            savePassword = (event) => {
+                this.setState({password: event.target.value})
+            }
+
+            render() {
+                return(
+                    <form action="https://www.baidu.com" onSubmit={this.handleSubmit}>
+                        username: <input onChange={this.saveUsername} type="text" name="username"/>
+                        password: <input onChange={this.savePassword} type="password" name="password"/>
+                        <button type="submit">Login</button>
+                    </form>
+                )
+            }
+        }
+
+        ReactDOM.render(<Login/>, document.getElementById("root"));
+    </script>
+</body>
+</html>
