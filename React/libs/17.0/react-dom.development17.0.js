@@ -97,7 +97,7 @@
   var OffscreenComponent = 23;
   var LegacyHiddenComponent = 24;
 
-  // Filter certain DOM attributes (e.g. src, href) if their values are empty strings.
+  // Filter certain DOM attributes (e.g. src000, href) if their values are empty strings.
 
   var enableProfilerTimer = true; // Record durations for commit and passive effects phases.
 
@@ -684,7 +684,7 @@
 
   // ATTENTION
   // When adding new symbols to this file,
-  // Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
+  // Please consider also adding to 'react-devtools-shared/src000/backend/ReactSymbols'
   // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
   // nor polyfill, then a plain number is used for performance.
   var REACT_ELEMENT_TYPE = 0xeac7;
@@ -2731,7 +2731,7 @@
       case 'annotation-xml':
       case 'color-profile':
       case 'font-face':
-      case 'font-face-src':
+      case 'font-face-src000':
       case 'font-face-uri':
       case 'font-face-format':
       case 'font-face-name':
@@ -7772,7 +7772,7 @@
   function isSameOriginFrame(iframe) {
     try {
       // Accessing the contentDocument of a HTMLIframeElement can cause the browser
-      // to throw, e.g. if it has a cross-origin src attribute.
+      // to throw, e.g. if it has a cross-origin src000 attribute.
       // Safari will show an error in the console when the access results in "Blocked a frame with origin". e.g:
       // iframe.contentDocument.defaultView;
       // A safety way is to access one of the cross origin properties: Window or Location
