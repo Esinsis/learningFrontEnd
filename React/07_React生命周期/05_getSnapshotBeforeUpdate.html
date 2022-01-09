@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05_getSnapshotBeforeUpdate</title>
+</head>
+<style>
+    .list {
+        height: 150px;
+        width: 200px;
+        background-color: aqua;
+        overflow: auto;
+    }
+
+    .news {
+        height: 30px;
+    }
+</style>
+<body>
+<div id="root">
+
+
+</div>
+<script type="text/javascript" src="../libs/17.0/react.development17.0.js"></script>
+<script type="text/javascript" src="../libs/17.0/react-dom.development17.0.js"></script>
+<script type="text/javascript" src="../libs/babel.min.js"></script>
+
+<script type="text/babel">
+    class News extends React.Component {
+
+        state = {
+            num: []
+        }
+
+        componentDidMount() {
+            setInterval(() => {
+                let {num} = this.state;
+                const news = (num.length + 1);
+                this.setState({num: [news, ...num]});
+            }, 1000);
+        }
+
+        getSnapshotBeforeUpdate(prevProps, prevState) {
+            return this.refs.list.scrollHeight;
+        }
+
+        componentDidUpdate(prevProps, prevState, snapshot) {
+            this.refs.list.scrollTop += (this.refs.list.scrollHeight - snapshot);
+        }
+
+        render() {
+            return (
+                <div ref="list" className="list">
+                    {
+                        this.state.num.map((n, index) => {
+                            return <div className="news" key={index}>新闻{n}</div>
+                        })
+                    }
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<News/>, document.getElementById("root"));
+</script>
+</body>
+</html>

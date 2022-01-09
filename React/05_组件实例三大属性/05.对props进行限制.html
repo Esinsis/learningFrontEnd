@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>props</title>
+    <title>05.对props进行限制</title>
 </head>
 <style>
     body {
@@ -17,20 +17,36 @@
 <script type="text/javascript" src="../libs/react.development.js"></script>
 <script type="text/javascript" src="../libs/react-dom.development.js"></script>
 <script type="text/javascript" src="../libs/babel.min.js"></script>
+<script type="text/javascript" src="../libs/prop-types.js"></script>
 
 <script type="text/babel">
+
     class Person extends React.Component {
 
         render() {
             const {name, gender, age} = this.props;
+            // this.props.name = 'Jack';// props是只读的，不能修改
             return (
                 <ul>
                     <li>name: {name}</li>
                     <li>gender: {gender}</li>
-                    <li>age: {age * 1 + 1}</li>
+                    <li>age: {age + 1}</li>
                 </ul>
             )
         }
+    }
+
+    // 限制属性
+    Person.propTypes = {
+        name: PropTypes.string.isRequired,
+        gender: PropTypes.string,
+        age: PropTypes.number,
+        speak: PropTypes.func
+    }
+
+    // 设置属性的默认值
+    Person.defaultProps = {
+        gender: "未知"
     }
 
     const p = {name: 'Joseph', gender: 'M', age: 23}

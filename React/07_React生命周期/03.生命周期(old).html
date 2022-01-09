@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03.生命周期(old) with 17.0 React</title>
+</head>
+<body>
+<div id="box"></div>
+<div id="root"></div>
+
+<script type="text/javascript" src="../libs/17.0/react.development17.0.js"></script>
+<script type="text/javascript" src="../libs/17.0/react-dom.development17.0.js"></script>
+<script type="text/javascript" src="../libs/babel.min.js"></script>
+
+<script type="text/babel">
+
+    class Sum extends React.Component {
+        /**
+         * UNSAFE_componentWillMount
+         * UNSAFE_componentWillUpdate
+         * UNSAFE_componentWillReceiveProps
+         * @param props
+         */
+        constructor(props) {
+            super(props);
+            console.log("Count --> constructor")
+            this.state = {
+                count: 0
+            }
+        }
+
+        UNSAFE_componentWillMount() {
+            console.log("Count --> componentWillMount")
+        }
+
+        componentDidMount() {
+            console.log("Count --> componentDidMount")
+        }
+
+        /**
+         * 控制组件更新的阀门
+         * @param nextProps
+         * @param nextState
+         * @param nextContext
+         * @returns {boolean} 返回false则不会再执行后面的生命周期函数，render不会触发 默认返回true
+         */
+        shouldComponentUpdate(nextProps, nextState, nextContext) {
+            console.log("Count --> shouldComponentUpdate")
+            return true;
+        }
+
+        UNSAFE_componentWillUpdate(nextProps, nextState, nextContext) {
+            console.log("Count --> componentWillUpdate")
+        }
+
+        componentDidUpdate(prevProps, prevState, snapshot) {
+            console.log("Count --> componentDidUpdate")
+        }
+
+        componentWillUnmount() {
+            console.log("Count --> componentWillUnmount")
+        }
+
+        // 使用箭头函数，保证this的指向正确
+        add = () => {
+            // 快捷取值，必须要加大括号
+            const {count} = this.state;
+            this.setState({count: count + 1})
+        }
+
+        updateByForce = () => {
+            this.forceUpdate();
+        }
+
+        render() {
+            console.log("Count --> render")
+            const {count} = this.state;
+            return (
+                <div>
+                    <h2>当前求和为: {count}</h2>
+                    <button onClick={this.add}>点我+1</button>
+                    <button onClick={this.updateByForce}>强制更新</button>
+                </div>
+            )
+        }
+    }
+
+    class A extends React.Component {
+
+        state = {
+            carName: "奥迪A8"
+        }
+
+        changeCar = () => {
+            this.setState({carName: '奥托'})
+        }
+
+        render() {
+            return (
+                <div>
+                    <div>我是A组件</div>
+                    <button onClick={this.changeCar}>换车</button>
+                    <B carName={this.state.carName}/>
+                </div>
+            )
+        }
+    }
+
+    class B extends React.Component {
+
+        UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
+            console.log(nextProps, nextContext);
+            console.log('B ---> componentWillReceiveProps')
+        }
+
+        render() {
+            console.log('B ---> render')
+            return (
+                <div>
+                    <div>我是B组件,接收到的车是:{this.props.carName}</div>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<Sum/>, document.getElementById("box"));
+    ReactDOM.render(<A/>, document.getElementById("root"));
+
+</script>
+</body>
+</html>

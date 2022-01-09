@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>08.函数式组件props</title>
+</head>
+<style>
+    body {
+        font-size: 28px;
+    }
+</style>
+<body>
+<div id="box"></div>
+
+<script type="text/javascript" src="../libs/react.development.js"></script>
+<script type="text/javascript" src="../libs/react-dom.development.js"></script>
+<script type="text/javascript" src="../libs/babel.min.js"></script>
+<script type="text/javascript" src="../libs/prop-types.js"></script>
+
+<script type="text/babel">
+
+    function Person(props){
+        const {name, gender, age} = props;
+        return (
+            <ul>
+                <li>name: {name}</li>
+                <li>gender: {gender}</li>
+                <li>age: {age + 1}</li>
+            </ul>
+        )
+    }
+
+    // 限制属性
+    Person.propTypes = {
+        name: PropTypes.string.isRequired,
+        gender: PropTypes.string,
+        age: PropTypes.number,
+        speak: PropTypes.func
+    }
+
+    // 设置属性的默认值
+    Person.defaultProps = {
+        gender: "未知"
+    }
+
+    ReactDOM.render(<Person name="Michael" age={23}/>, document.getElementById("box"));
+</script>
+</body>
+</html>
