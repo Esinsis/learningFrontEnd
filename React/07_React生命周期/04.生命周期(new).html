@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04.生命周期(new)</title>
+</head>
+<body>
+<div id="box"></div>
+
+<script type="text/javascript" src="../libs/17.0/react.development17.0.js"></script>
+<script type="text/javascript" src="../libs/17.0/react-dom.development17.0.js"></script>
+<script type="text/javascript" src="../libs/babel.min.js"></script>
+
+<script type="text/babel">
+
+    class Sum extends React.Component {
+
+        constructor(props) {
+            super(props);
+            console.log("Count --> constructor")
+            this.state = {
+                count: 0
+            }
+        }
+
+        // state的值在任何时候都取决于props
+        static getDerivedStateFromProps(props, state) {
+            console.log("Count --> getDerivedStateFromProps", props, state)
+            return props;
+        }
+
+        /**
+         * 会把返回值传递给componentDidUpdate()
+         * @param prevProps
+         * @param prevState
+         * @returns
+         */
+        getSnapshotBeforeUpdate(prevProps, prevState) {
+            console.log("Count --> getSnapshotBeforeUpdate")
+            return {...prevProps,...prevState};
+        }
+
+        componentDidMount() {
+            console.log("Count --> componentDidMount")
+        }
+
+        /**
+         * 控制组件更新的阀门
+         * @param nextProps
+         * @param nextState
+         * @param nextContext
+         * @returns {boolean} 返回false则不会再执行后面的生命周期函数，render不会触发 默认返回true
+         */
+        shouldComponentUpdate(nextProps, nextState, nextContext) {
+            console.log("Count --> shouldComponentUpdate")
+            return true;
+        }
+
+        /**
+         * @param prevProps
+         * @param prevState
+         * @param snapshot 来自getSnapshotBeforeUpdate() 的返回值
+         */
+        componentDidUpdate(prevProps, prevState, snapshot) {
+            console.log("Count --> componentDidUpdate", snapshot)
+        }
+
+        componentWillUnmount() {
+            console.log("Count --> componentWillUnmount")
+        }
+
+        // 使用箭头函数，保证this的指向正确
+        add = () => {
+            // 快捷取值，必须要加大括号
+            const {count} = this.state;
+            this.setState({count: count + 1})
+        }
+
+        updateByForce = () => {
+            this.forceUpdate();
+        }
+
+        render() {
+            console.log("Count --> render")
+            const {count} = this.state;
+            return (
+                <div>
+                    <h2>当前求和为: {count}</h2>
+                    <button onClick={this.add}>点我+1</button>
+                    <button onClick={this.updateByForce}>强制更新</button>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<Sum/>, document.getElementById("box"));
+
+</script>
+</body>
+</html>

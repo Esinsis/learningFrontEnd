@@ -2,33 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>02.生命周期(old)</title>
+    <title>03.生命周期(old) with 17.0 React</title>
 </head>
 <body>
 <div id="box"></div>
 <div id="root"></div>
 
-<script type="text/javascript" src="../libs/react.development.js"></script>
-<script type="text/javascript" src="../libs/react-dom.development.js"></script>
+<script type="text/javascript" src="../libs/17.0/react.development17.0.js"></script>
+<script type="text/javascript" src="../libs/17.0/react-dom.development17.0.js"></script>
 <script type="text/javascript" src="../libs/babel.min.js"></script>
 
 <script type="text/babel">
 
     class Sum extends React.Component {
         /**
-         * 1. 初始化
-         *    constructor => componentWillMount => render => componentDidMount
-         *
-         * 2. 更新
-         *    1) 内部组件 this.setState():
-         *      shouldComponentUpdate => componentWillUpdate => render => componentDidUpdate
-         *    2) 内部组件 this.forceUpdate():
-         *      componentWillUpdate => render => componentDidUpdate
-         *    3) 父组件的 render():
-         *      componentWillReceiveProps => shouldComponentUpdate => componentWillUpdate => render => componentDidUpdate
-         * 3. 卸载
-         *    由ReactDOM.unmountComponentAtNode()触发
-         *    componentWillUnmount()
+         * UNSAFE_componentWillMount
+         * UNSAFE_componentWillUpdate
+         * UNSAFE_componentWillReceiveProps
          * @param props
          */
         constructor(props) {
@@ -39,7 +29,7 @@
             }
         }
 
-        componentWillMount() {
+        UNSAFE_componentWillMount() {
             console.log("Count --> componentWillMount")
         }
 
@@ -59,7 +49,7 @@
             return true;
         }
 
-        componentWillUpdate(nextProps, nextState, nextContext) {
+        UNSAFE_componentWillUpdate(nextProps, nextState, nextContext) {
             console.log("Count --> componentWillUpdate")
         }
 
@@ -69,10 +59,6 @@
 
         componentWillUnmount() {
             console.log("Count --> componentWillUnmount")
-        }
-
-        componentWillReceiveProps(nextProps, nextContext) {
-            console.log("Count --> componentWillReceiveProps")
         }
 
         // 使用箭头函数，保证this的指向正确
@@ -122,27 +108,9 @@
 
     class B extends React.Component {
 
-        componentWillReceiveProps(nextProps, nextContext) {
+        UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
             console.log(nextProps, nextContext);
             console.log('B ---> componentWillReceiveProps')
-        }
-
-        shouldComponentUpdate(nextProps, nextState, nextContext) {
-            console.log('B ---> shouldComponentUpdate')
-            return true;
-        }
-
-        componentWillUpdate(nextProps, nextState, nextContext) {
-            console.log("B --> componentWillUpdate")
-        }
-
-        componentDidUpdate(prevProps, prevState, snapshot) {
-            console.log("B --> componentDidUpdate")
-        }
-
-
-        componentDidMount() {
-            console.log('B ---> componentDidMount')
         }
 
         render() {

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>04_非柯里化实现</title>
+    <script type="text/javascript" src="../libs/react.development.js"></script>
+    <script type="text/javascript" src="../libs/react-dom.development.js"></script>
+    <script type="text/javascript" src="../libs/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+    /**
+     * 高阶函数:
+     *    如果一个函数符合以下两个规范中的任意一个，则为高阶函数
+     *    1. 若A函数，接受的参数是一个函数
+     *    2. 若A函数，调用的返回值依然是一个函数
+     *
+     *    常用高阶函数: Promise、 setTimeout、 arr.map()等
+     *
+     * 函数的柯里化:
+     *    通过函数调用继续返回函数的方式，实现多次接受函数，最后同意处理的函数编码形式
+     */
+    class Login extends React.Component {
+
+        state = {
+            username: '',
+            password: ''
+        }
+
+        // 表单事件的回调
+        handleSubmit = (event) => {
+            event.preventDefault();
+            const {username, password} = this.state;
+            alert(`Username: ${username}, Password: ${password}`);
+        }
+
+        //保存表单数据到状态中
+        saveFormData = (dataType, event) => {
+            // 使用中括号获取参数中的值
+            // 使用中括号获取参数中的值
+            // 使用中括号获取参数中的值
+            this.setState({[dataType]: event.target.value})
+        }
+
+        render() {
+            return (
+                <form action="https://www.baidu.com" onSubmit={this.handleSubmit}>
+                    username: <input onChange={event => this.saveFormData('username', event)} type="text" name="username"/><br/><br/>
+                    password: <input onChange={event => this.saveFormData('password', event)} type="password" name="password"/><br/><br/>
+                    <button type="submit">Login</button>
+                </form>
+            )
+        }
+    }
+
+    ReactDOM.render(<Login/>, document.getElementById("root"));
+</script>
+</body>
+</html>
