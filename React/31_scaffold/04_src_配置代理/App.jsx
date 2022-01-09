@@ -1,36 +1,27 @@
-import React, {Component} from "react";
-import axios from "axios";
+import React, { Component } from 'react'
+import axios from 'axios'
 
-export default class App extends Component{
+export default class App extends Component {
 
-    getStudents = () => {
-        axios.get("https://localhost:5001/api1/students").then(
-            response => {
-                console.log(response.data)
-            },
-            error => {
-                console.error(error)
-            }
-        );
+    getStudentData = ()=>{
+        axios.get('http://localhost:3000/api1/students').then(
+            response => {console.log('成功了',response.data);},
+            error => {console.log('失败了',error);}
+        )
     }
 
-    getCars = () => {
-        axios.get("https://localhost:5002/api2/cars").then(
-            response => {
-                console.log(response.data)
-            },
-            error => {
-                console.error(error)
-            }
-        );
+    getCarData = ()=>{
+        axios.get('http://localhost:3000/api2/cars').then(
+            response => {console.log('成功了',response.data);},
+            error => {console.log('失败了',error);}
+        )
     }
-
 
     render() {
-        return(
+        return (
             <div>
-                <button onClick={this.getStudents}>获取学生DATA</button>
-                <button onClick={this.getCars}>获取汽车DATA</button>
+                <button onClick={this.getStudentData}>获取学生数据</button>
+                <button onClick={this.getCarData}>获取汽车数据</button>
             </div>
         )
     }

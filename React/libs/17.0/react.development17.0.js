@@ -17,7 +17,7 @@
 
   // ATTENTION
   // When adding new symbols to this file,
-  // Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
+  // Please consider also adding to 'react-devtools-shared/src000/backend/ReactSymbols'
   // The Symbol used to tag the ReactElement-like types. If there is no native Symbol
   // nor polyfill, then a plain number is used for performance.
   var REACT_ELEMENT_TYPE = 0xeac7;
@@ -1436,7 +1436,7 @@
     return elementType;
   }
 
-  // Filter certain DOM attributes (e.g. src, href) if their values are empty strings.
+  // Filter certain DOM attributes (e.g. src000, href) if their values are empty strings.
 
   var enableScopeAPI = false; // Experimental Create Event Handle API.
 
