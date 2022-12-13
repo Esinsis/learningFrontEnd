@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>收集表单数据</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+
+    <div id="root">
+        <form @submit.prevent="submitForm">
+            账号：<input type="text" v-model="userInfo.account" /><br/><br/>
+            密码：<input type="password" v-model="userInfo.passwd" /><br/><br/>
+            年龄：<input type="number" v-model="userInfo.age" /><br/><br/>
+            性别：
+            <label for="gender_m">男</label>
+            <input type="radio" value="male" id="gender_m" v-model="userInfo.gender" />
+            <label for="gender_f">女</label>
+            <input type="radio" value="famale" id="gender_f" v-model="userInfo.gender"><br/><br/>
+            爱好：
+            读书<input type="checkbox" value="reading" v-model="userInfo.hobby">
+            打游戏<input type="checkbox" value="playingGame" v-model="userInfo.hobby">
+            跑步 <input type="checkbox" value="runing" v-model="userInfo.hobby"><br/><br/>
+            地址：
+            <select v-model="userInfo.addr">
+                <option value="">--请选择--</option>
+                <option value="Beijing">北京</option>
+                <option value="Shanghai">上海</option>
+                <option value="Guangzhou">广州</option>
+            </select> <br/><br/>
+            其他信息：
+            <textarea v-model="userInfo.other" >
+
+            </textarea> <br/>
+            <input type="checkbox" v-model="userInfo.agree">请阅读 <a href="http://www.baidu.com">《协议》</a>
+            <button type="submit">提交</button>
+        </form>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                userInfo: {
+                    account: '',
+                    passwd: '',
+                    hobby: [],
+                    gender: '',
+                    addr: '',
+                    other:'',
+                    agree: false
+                }
+            },
+            methods: {
+                submitForm(){
+                    console.log(JSON.stringify(this.userInfo));
+                }
+            }
+        })
+    </script>
+</body>
+</html>

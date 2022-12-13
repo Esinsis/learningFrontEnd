@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01_container</title>
+    <link href="./css/bootstrap.css" rel="stylesheet">
+    <script src="./js/bootstrap.js"></script>
+</head>
+<body>
+<div class="container-fluid p-5 bg-primary text-white text-center">
+    <h1>我的第一张 Bootstrap 页面</h1>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>列 1：春日</h3>
+            <p>胜日寻芳泗水滨，无边光景一时新。</p>
+            <p>等闲识得东风面，万紫千红总是春。</p>
+        </div>
+        <div class="col-sm-4">
+            <h3>列 2：初夏绝句</h3>
+            <p>纷纷红紫已成尘，布谷声中夏令新。</p>
+            <p>夹路桑麻行不尽，始知身是太平人。</p>
+        </div>
+        <div class="col-sm-4">
+            <h3>列 3：山行</h3>
+            <p>远上寒山石径斜，白云生处有人家。</p>
+            <p>停车坐爱枫林晚，霜叶红于二月花。</p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h1>我的第一张 Bootstrap 页面</h1>
+    <p>这部分在 .container 类中。</p>
+    <p>.container 类提供了响应式固定宽度的容器。</p>
+</div>
+
+<div class="container-fluid">
+    <h1>我是第二张Bootstrap页面</h1>
+    <p>这部分在 .container-fluid 类中</p>
+    <p> .container-fluid 类提供了全宽容器，跨越视口的整个宽度</p>
+</div>
+<!--my == margin-top & margin-bottom-->
+<div class="container pt-5 my-5 border">
+    <h1>我的第一张 Bootstrap 页面</h1>
+    这个容器有边框和额外的内边距和外边距。
+</div>
+<!--pt == padding-top-->
+<div class="container pt-5 my-5 bg-dark text-white">
+    <h1>我的第一张 Bootstrap 页面</h1>
+    这个容器有深色背景色和白色文本，以及额外的内边距和外边距。
+</div>
+<!--py == padding-top & padding-bottom-->
+<div class="container py-5 my-5 bg-primary text-white">
+    <h1>我的第一张 Bootstrap 页面</h1>
+    这个容器有蓝色背景色和白色文本，以及额外的内边距和外边距。
+</div>
+
+<div class="container-sm">.container-sm</div>
+<div class="container-md">.container-md</div>
+<div class="container-lg">.container-lg</div>
+<div class="container-xl">.container-xl</div>
+<div class="container-xxl">.container-xxl</div>
+</body>
+</html>
