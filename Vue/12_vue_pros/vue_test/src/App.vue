@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import TodoHeader from './components/TodoHeader';
-import TodoFooter from './components/TodoFooter';
-import TodoList from './components/TodoList';
-import TodoItem from './components/TodoItem';
+import TodoHeader from "@/components/TodoHeader";
+import TodoList from "@/components/TodoList";
+import TodoItem from "@/components/TodoItem";
+import TodoFooter from "@/components/TodoFooter";
 
 export default {
   name: "App",
