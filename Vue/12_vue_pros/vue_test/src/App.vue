@@ -23,12 +23,7 @@ export default {
   },
   data() {
     return {
-      todos: [
-        {id: '001', content: '吃饭', done: true},
-        {id: '002', content: '睡觉', done: false},
-        {id: '003', content: '烫头', done: true},
-        {id: '004', content: '抽烟', done: false},
-      ]
+      todos: JSON.parse(localStorage.getItem('todos')) || []
     }
   },
   methods: {
@@ -50,6 +45,14 @@ export default {
     },
     clearAll(){
       this.todos = this.todos.filter(i => !i.done)
+    }
+  },
+  watch:{
+    todos: {
+      deep: true,
+      handler(value){
+        localStorage.setItem('todos', JSON.stringify(value))
+      }
     }
   }
 }
