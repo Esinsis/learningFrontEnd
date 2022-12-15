@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01_组件基本使用</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <Hello></Hello>
+        <School></School>
+        <hr/>
+        <Student></Student>
+    </div>
+
+    <script>
+
+        // 创建组件
+        const School = Vue.extend({
+            template: `
+                <div>
+                    <h2>学校名字：{{name}}</h2>
+                    <h2>地址： {{address}}</h2>
+                </div>
+            `,
+            data(){
+                return {
+                    name: '北京大学',
+                    address: '北京'
+                }
+            }
+        })
+
+        const Student = Vue.extend({
+            template: `
+                <div>
+                    <h2>学生姓名：{{name}}</h2>
+                    <h2>学生年龄：{{age}}</h2>
+                </div>
+            `,
+            data(){
+                return {
+                    name: 'Tyler',
+                    age: 24
+                }
+            }
+        })
+
+        const Hello = Vue.extend({
+            template: `<H1>{{msg}}</H1>`,
+            data(){
+                return {
+                    msg: 'Hello World!'
+                }
+            }
+        })
+
+        // 全局注册组件
+        Vue.component('Hello', Hello)
+
+        new Vue({
+            el: '#root',
+            data: {
+
+            },
+            // 局部注册组件
+            components:{
+                School,
+                Student
+            }
+        })
+    </script>
+</body>
+</html>
