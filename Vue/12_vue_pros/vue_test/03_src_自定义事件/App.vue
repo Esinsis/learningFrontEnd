@@ -5,8 +5,8 @@
     <!-- 通过自定义事件实现子组件向父组件传递数据 -->
 <!--    <Student v-on:tyler.onece="getStudentName"/>-->
     <Student ref="student"></Student>
-
-    <Student @click.native="console.log('Hello')"/>
+    <!-- 使用原生的事件，必须加 .native, 否则Vue 会认为是自定义事件 -->
+<!--    <Student @click.native="console.log('Hello')"/>-->
   </div>
 </template>
 
@@ -36,7 +36,7 @@ export default {
     // 当 tyler 自定义事件被触发时，绑定getStudentName 回调事件
     this.$refs.student.$on('tyler', this.getStudentName)
     // 必须使用箭头函数改变this 指向
-    /*this.$refs.student.$on("tyler", () => {
+    /*this.$refs.student.$on("tyler", (data) => {
       console.log('getStudentName 函数被调用了', name)
     })*/
 

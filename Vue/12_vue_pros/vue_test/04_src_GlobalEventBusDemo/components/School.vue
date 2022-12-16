@@ -9,7 +9,6 @@
 <script>
 export default {
   name: 'School',
-  props: ['getSchoolName'],
   data() {
     return {
       name: '北京大学',
@@ -18,7 +17,8 @@ export default {
   },
   methods: {
     sendSchoolName() {
-      this.getSchoolName(this.name)
+      // 触发事件总线的自定义事件
+      this.$bus.$emit('hello', this.name)
     }
   }
 }

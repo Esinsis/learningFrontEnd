@@ -1,53 +1,117 @@
 <template>
   <div id="root">
-    <h1>{{ msg }}</h1>
-    <School :getSchoolName="getSchoolName"/>
-    <!-- 通过自定义事件实现子组件向父组件传递数据 -->
-<!--    <Student v-on:tyler.onece="getStudentName"/>-->
-    <Student ref="student"></Student>
-
-    <Student @click.native="console.log('Hello')"/>
+    <div class="todo-container">
+      <div class="todo-wrap">
+        <TodoHeader :addTodo="addTodo"/>
+        <TodoList :todos="todos"/>
+        <TodoFooter :todos="todos" :checkAllTodo="checkAllTodo" :clearAll="clearAll"/>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import School from "@/components/School";
-import Student from "@/components/Student";
+import TodoHeader from "@/components/TodoHeader";
+import TodoList from "@/components/TodoList";
+import TodoItem from "@/components/TodoItem";
+import TodoFooter from "@/components/TodoFooter";
+import Vue from "vue";
 
 export default {
   name: "App",
   components: {
-    School, Student
+    TodoHeader, TodoFooter, TodoList, TodoItem
   },
   data() {
     return {
-      msg: 'Hello World!'
+      todos: JSON.parse(localStorage.getItem('todos')) || []
     }
   },
   methods: {
-    getSchoolName(name) {
-      console.log('App 收到了学校名称', name)
+    addTodo(todoObj) {
+      this.todos.unshift(todoObj)
     },
-    getStudentName(name) {
-      console.log('getStudentName 函数被调用了', name)
+    checkTodo(id) {
+      this.todos.forEach((i) => {
+        if (i.id === id) i.done = !i.done
+      })
+    },
+    deleteItem(id) {
+      this.todos = this.todos.filter(i => i.id !== id)
+    },
+    checkAllTodo(val) {
+      this.todos.forEach((i) => {
+        i.done = val
+      })
+    },
+    clearAll() {
+      this.todos = this.todos.filter(i => !i.done)
     }
   },
+  watch: {
+    todos: {
+      deep: true,
+      handler(value) {
+        localStorage.setItem('todos', JSON.stringify(value))
+      }
+    }
+  },
+  beforeCreate() {
+    Vue.prototype.$bus = this
+  },
   mounted() {
-    // 当 tyler 自定义事件被触发时，绑定getStudentName 回调事件
-    this.$refs.student.$on('tyler', this.getStudentName)
-    // 必须使用箭头函数改变this 指向
-    /*this.$refs.student.$on("tyler", () => {
-      console.log('getStudentName 函数被调用了', name)
-    })*/
-
-    // this.$refs.student.$once('tyler', this.getStudentName)
+    this.$bus.$on('checkTodo', this.checkTodo)
+    this.$bus.$on('deleteItem', this.deleteItem)
+  },
+  beforeDestroy() {
+    this.$bus.$off(['checkTodo', 'deleteItem'])
   }
 }
 </script>
 
 <style>
-#root {
-  background-color: #c0a16b;
+/*base*/
+body {
+  background: #fff;
+}
+
+.btn {
+  display: inline-block;
+  padding: 4px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #da4f49;
+  border: 1px solid #bd362f;
+}
+
+.btn-danger:hover {
+  color: #fff;
+  background-color: #bd362f;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.todo-container {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.todo-container .todo-wrap {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 </style>
 
