@@ -1,7 +1,7 @@
 <template>
   <div id="root">
-    <div class="todo-container">
-      <div class="todo-wrap">
+    <div className="todo-container">
+      <div className="todo-wrap">
         <TodoHeader :addTodo="addTodo"/>
         <TodoList :todos="todos" :checkTodo="checkTodo" :deleteItem="deleteItem"/>
         <TodoFooter :todos="todos" :checkAllTodo="checkAllTodo" :clearAll="clearAll"/>
@@ -23,12 +23,7 @@ export default {
   },
   data() {
     return {
-      todos: [
-        {id: '001', content: '吃饭', done: true},
-        {id: '002', content: '睡觉', done: false},
-        {id: '003', content: '烫头', done: true},
-        {id: '004', content: '抽烟', done: false},
-      ]
+      todos: JSON.parse(localStorage.getItem('todos')) || []
     }
   },
   methods: {
@@ -48,8 +43,16 @@ export default {
         i.done = val
       })
     },
-    clearAll(){
+    clearAll() {
       this.todos = this.todos.filter(i => !i.done)
+    }
+  },
+  watch: {
+    todos: {
+      deep: true,
+      handler(value) {
+        localStorage.setItem('todos', JSON.stringify(value))
+      }
     }
   }
 }
