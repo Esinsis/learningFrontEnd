@@ -15,7 +15,7 @@ import TodoHeader from "@/components/TodoHeader";
 import TodoList from "@/components/TodoList";
 import TodoItem from "@/components/TodoItem";
 import TodoFooter from "@/components/TodoFooter";
-import PubSub from "pubsub-js";
+import Vue from "vue";
 
 export default {
   name: "App",
@@ -31,20 +31,12 @@ export default {
     addTodo(todoObj) {
       this.todos.unshift(todoObj)
     },
-    checkTodo(topic, id) {
+    checkTodo(id) {
       this.todos.forEach((i) => {
         if (i.id === id) i.done = !i.done
       })
     },
-    editTodo(_, arr) {
-      let id = arr[0]
-      let new_content = arr[1]
-      if (!new_content.trim()) return alert('输入不能为空！')
-      this.todos.forEach((i) => {
-        if (i.id === id) i.content = new_content
-      })
-    },
-    deleteItem(_, id) {
+    deleteItem(id) {
       this.todos = this.todos.filter(i => i.id !== id)
     },
     checkAllTodo(val) {
@@ -64,15 +56,15 @@ export default {
       }
     }
   },
+  beforeCreate() {
+    Vue.prototype.$bus = this
+  },
   mounted() {
-    this.checkTodoId = PubSub.subscribe('checkTodo', this.checkTodo)
-    this.deleteItemId = PubSub.subscribe('deleteItem', this.deleteItem)
-    this.editItemId = PubSub.subscribe('editItem', this.editTodo)
+    this.$bus.$on('checkTodo', this.checkTodo)
+    this.$bus.$on('deleteItem', this.deleteItem)
   },
   beforeDestroy() {
-    PubSub.unsubscribe(this.checkTodoId)
-    PubSub.unsubscribe(this.deleteItemId)
-    PubSub.unsubscribe(this.editItemId)
+    this.$bus.$off(['checkTodo', 'deleteItem'])
   }
 }
 </script>
@@ -100,13 +92,6 @@ body {
   color: #fff;
   background-color: #da4f49;
   border: 1px solid #bd362f;
-}
-
-.btn-normal {
-  color: #fff;
-  background-color: #0c63e4;
-  border: 1px solid #0a53be;
-  margin-right: 5px;
 }
 
 .btn-danger:hover {
