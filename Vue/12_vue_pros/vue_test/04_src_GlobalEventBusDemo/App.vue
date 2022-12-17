@@ -20,9 +20,6 @@ export default {
     return {
       msg: 'Hello World!'
     }
-  },
-  beforeCreate() {
-    Vue.prototype.$bus = this // 安装全局事件总线，$bus 就是当前应用的vm
   }
 }
 </script>

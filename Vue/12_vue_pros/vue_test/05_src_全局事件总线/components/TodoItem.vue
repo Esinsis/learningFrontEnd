@@ -2,22 +2,51 @@
   <li>
     <label>
       <input type="checkbox" :checked="todoObj.done" @change="handleCheck(todoObj.id)"/>
-      <span>{{todoObj.content}}</span>
+      <span v-show="!todoObj.isEdit">{{ todoObj.content }}</span>
+      <input
+          type="text"
+          ref="inputRef"
+          v-show="todoObj.isEdit"
+          :value="todoObj.content"
+          @blur="handleBlur(todoObj, $event)"
+      >
     </label>
     <button class="btn btn-danger" @click="handleDelete(todoObj.id)">删除</button>
+    <button class="btn btn-normal"
+            v-show="!todoObj.isEdit"
+            @click="handleEdit(todoObj)">
+      编辑
+    </button>
   </li>
 </template>
 
 <script>
+
 export default {
   name: "TodoItem",
   props: ['todoObj'],
   methods: {
-    handleCheck(id){
+    handleCheck(id) {
       this.$bus.$emit('checkTodo', id)
     },
-    handleDelete(id){
+    handleDelete(id) {
       this.$bus.$emit('deleteItem', id)
+    },
+    handleEdit(todo) {
+      if (todo.hasOwnProperty('isEdit')) {
+        todo.isEdit = true
+      } else {
+        this.$set(todo, 'isEdit', true)
+      }
+      // 在下一次DOM更新结束后执行其指定的回调
+      this.$nextTick(function () {
+        this.$refs.inputRef.focus()
+      })
+    },
+    handleBlur(todo, e) {
+      todo.isEdit = false
+      console.log(e.target.value)
+      this.$bus.$emit('editItem', [todo.id, e.target.value])
     }
   }
 }

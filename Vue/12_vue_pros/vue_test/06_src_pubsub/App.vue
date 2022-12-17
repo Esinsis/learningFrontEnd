@@ -15,6 +15,7 @@ import TodoHeader from "@/components/TodoHeader";
 import TodoList from "@/components/TodoList";
 import TodoItem from "@/components/TodoItem";
 import TodoFooter from "@/components/TodoFooter";
+import PubSub from "pubsub-js";
 
 export default {
   name: "App",
@@ -30,12 +31,14 @@ export default {
     addTodo(todoObj) {
       this.todos.unshift(todoObj)
     },
-    checkTodo(id) {
+    // 第一个参数是 topic的内容
+    checkTodo(topic, id) {
       this.todos.forEach((i) => {
         if (i.id === id) i.done = !i.done
       })
     },
-    editTodo(arr) {
+    // 第一个参数是 topic的内容, 可以用一个展位参数
+    editTodo(_, arr) {
       let id = arr[0]
       let new_content = arr[1]
       if (!new_content.trim()) return alert('输入不能为空！')
@@ -43,7 +46,8 @@ export default {
         if (i.id === id) i.content = new_content
       })
     },
-    deleteItem(id) {
+    // 第一个参数是 topic的内容, 可以用一个展位参数
+    deleteItem(_, id) {
       this.todos = this.todos.filter(i => i.id !== id)
     },
     checkAllTodo(val) {
@@ -64,11 +68,14 @@ export default {
     }
   },
   mounted() {
-    this.$bus.$on('checkTodo', this.checkTodo)
-    this.$bus.$on('deleteItem', this.deleteItem)
+    this.checkTodoId = PubSub.subscribe('checkTodo', this.checkTodo)
+    this.deleteItemId = PubSub.subscribe('deleteItem', this.deleteItem)
+    this.editItemId = PubSub.subscribe('editItem', this.editTodo)
   },
   beforeDestroy() {
-    this.$bus.$off(['checkTodo', 'deleteItem'])
+    PubSub.unsubscribe(this.checkTodoId)
+    PubSub.unsubscribe(this.deleteItemId)
+    PubSub.unsubscribe(this.editItemId)
   }
 }
 </script>
