@@ -25,7 +25,7 @@ const mutations = {
     }
 }
 
-// vuex 中的getter 类似于Vue 中的计算属性
+// vuex 中的getters 类似于Vue 中的计算属性
 const getters = {
     multiTen(state) {
         return state.sum * 10
