@@ -2,12 +2,12 @@
   <div>
     <ul>
       <li v-for="m in messageList" :key="m.id">
-        <!-- 跳转路由并携带params参数，to的字符串写法 需要在router配置中的path 中添加占位符 path: 'detail/:id/:title' -->
-<!--         <router-link :to="`/home/messages/detail/${m.id}/${m.title}`">{{m.title}}</router-link>-->
+        <!-- 跳转路由并携带query参数，to的字符串写法 -->
+        <!-- <router-link :to="`/home/messages/detail?id=${m.id}&title=${m.title}`">{{m.title}}</router-link>-->
 
         <router-link :to="{
-              name: 'detail',
-              params: {
+              path: '/home/messages/detail',
+              query: {
                 id: m.id,
                 title: m.title
               }
