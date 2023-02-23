@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Title</title>
-<!--
+    <!--
     高度塌陷问题：
-        在浮动的不居中，父元素的高度默认是被子元素撑开的。当子元素浮动后，其会完全脱离文档流。
+        在浮动的布局中，父元素的高度默认是被子元素撑开的。当子元素浮动后，其会完全脱离文档流。
         子元素从文档流中脱离，将会无法撑起父元素的高度，导致父元素的高度丢失
         父元素高度丢失之后，其下的元素会自动上移，导致页面的布局混乱
 
@@ -23,8 +23,24 @@
             3. 将元素的overflow 设置为一个非 visible的值
                 - 常用的方式 为元素设置 overflow: hidden 开启BFC
 -->
-</head>
-<body>
 
-</body>
+    <style>
+      .outer {
+        border: 2px solid red;
+        overflow: hidden;
+      }
+      .inner{
+        width: 100px;
+        height: 100px;
+        background-color: #bfa;
+        float: left;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outer">
+      <div class="inner"></div>
+    </div>
+  </body>
 </html>

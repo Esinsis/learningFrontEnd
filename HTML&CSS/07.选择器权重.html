@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weightness</title>
+    <style>
+        /* 
+            选择器权重：
+                内联样式                1,0,0,0
+                id选择器                0,1,0,0 
+                class和伪类选择器       0,0,1,0
+                元素选择器              0,0,0,1
+            对于复合选择器
+                多个选择器的权重相加，因此 div#box 权重比 #box 大
+            分组选择器是单独计算的
+                div,p,span 中的div 和外边的div权重一样
+
+            但是无论如何下一级的选择器的权重都不会超过上一级。即 无论多个class选择器复合都不会超过id选择器的权重
+        */
+
+        div{
+            color: yellow;
+        }
+
+        #box {
+            color: red;
+        }
+
+        div#box{
+            color: skyblue;
+        }
+
+        .container{
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="box" class="container" > 我是一个div</div>
+</body>
+</html>

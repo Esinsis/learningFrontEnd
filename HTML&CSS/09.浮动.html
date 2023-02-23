@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>float</title>
+    <style>
+        /* 
+            浮动：通过浮动可以使一个元素向父元素的左侧或者右侧移动,
+
+                >>> 元素浮动之后会脱离文档流向上移动，会覆盖后方的兄弟元素，但是不会覆盖文字
+            
+                none: default value
+                left: 向左浮动
+                right: 向右浮动
+
+
+            >>> 脱离文档流的特点：
+                块元素：
+                    1. 块元素不再独占一行
+                    2. 脱离文档流之后，块元素的宽高默认都被内容撑开
+                
+                行内元素：
+                    1. 脱离文档流之后会变为块元素，特点和块元素一样
+                
+                一句话就是，脱离文档流之后，不再区分块元素和行内元素
+        */
+        .container{
+            width: 200px;
+            height: 200px;
+            background-color: #bfa;
+            float: left;
+        }
+        .container1{
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+            float: left;
+        }
+        .container2{
+            width: 300px;
+            height: 300px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+
+    </div>
+    <div class="container1">
+
+    </div>
+    <div class="container2">
+
+    </div>
+</body>
+</html>

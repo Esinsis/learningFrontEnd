@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>border & shadow</title>
+    <style>
+        /* 
+            默认情况下盒模型的宽高等于内容宽高 + border宽度 + padding + margin
+            使用box-sizing 改变盒模型的宽度计算方式
+                border-box: 盒模型宽高为 width和height 的值，内容的宽高会被padding和margin 挤压
+                content-box: (default) 
+
+            阴影效果：
+                使用box-shadow 定义盒模型的阴影效果 box-shadow: npx mpx opx color; 默认在盒子的正下方，看不到
+                npx: 水平偏移量
+                mpx: 垂直偏移量
+                opx: 阴影模糊半径
+                color: 背景色
+
+            圆角效果：
+                border-radius: xpx ypx;
+                xpx: 设置一个角的水平方向的角度
+                ypx: 设置一个角的垂直方向的角度
+        */
+        #container{
+            margin-left: 50px;
+            margin-top: 50px;
+            width: 400px;
+            height: 400px;
+            background-color: #bfa;
+            border: 3px red solid;
+            /* border-radius: 50px 100px; */
+
+            border-top-left-radius: 50px 100px;
+            border-top-right-radius: 50px 100px;
+            border-bottom-left-radius: 50px 100px;
+            border-bottom-right-radius: 50px 100px;
+
+            box-sizing: border-box;
+
+            box-shadow: 10px 5px 5px rgba(0, 0, 0, .3);
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="container">
+
+    </div>
+</body>
+</html>
